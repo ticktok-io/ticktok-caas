@@ -30,6 +30,7 @@
 
 (defn- callback-for [url]
   (fn []
+    (println "callback got tick")
     (let [{:keys [status body error]} @(http/post url)]
       body)))
 

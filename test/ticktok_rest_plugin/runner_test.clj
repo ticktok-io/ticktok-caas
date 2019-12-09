@@ -8,7 +8,7 @@
             [ticktok-rest-plugin.fake-client :as fake]))
 
 (defn wait-a-bit []
-  (Thread/sleep 3000)
+  (Thread/sleep 2000)
   true)
 
 (defn start-client []
