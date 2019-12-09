@@ -5,31 +5,34 @@
    [compojure.route :refer :all]
    [ring.middleware.json :as middleware]
    [clojure.data.json :as json]
-   [org.httpkit.server :as http]))
+   [org.httpkit.server :as http]
+   [clojure.core.async :as async :refer [chan put! <!! close!]]))
 
 (def port 8084)
 
 (def endpoint "http://localhost:8084/fakeurl")
 
 (def state (atom {:server nil
-                  :invocations 0}))
+                  :invocations nil}))
 
 (defn invocations []
   (:invocations @state))
 
 (defn invoked?  []
-  (pos? (invocations)))
+  (let [m (<!! (invocations))]
+    (close! ch)
+    (some? m)))
 
 (defn fake-handler [req]
   (println "fake client invoked!")
-  (swap! state update :invocations inc)
+  (swap! state update :invocations put! "invoked")
   {:status 200})
 
 (defn stop! []
   (let [inst (:server @state)]
     (when-not (nil? inst)
       (inst :timeout 100)
-      (swap! state assoc :server nil :invocations 0)
+      (swap! state assoc :server nil :invocations nil)
       (println "fake client stopped")))
   nil)
 
@@ -40,5 +43,5 @@
   (-> (handler/site api-routes)))
 
 (defn start! []
-  (swap! state assoc :server (http/run-server #'app {:port port}))
+  (swap! state assoc :server (http/run-server #'app {:port port}) :invocations (chan 1))
   (println "fake client started"))

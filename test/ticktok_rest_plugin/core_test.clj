@@ -25,6 +25,12 @@
 (defn stop-server []
   (plugin/stop!))
 
+(defn start-client []
+  (fake/start!))
+
+(defn stop-client []
+  (fake/stop!)
+  (runner/close!))
 
 (facts "about subscribing clock"
 
@@ -37,4 +43,19 @@
 
         (fact "should fail if request is missing url or name or schedule"
 
-          (schedule-on missing-clock) => 400)))))
+          (schedule-on missing-clock) => 400)))
+
+    (facts "when successfully subscribe"
+
+      (with-state-changes [(before :contents (start-client))
+                           (after :contents (stop-client))]
+
+        (let [valid-clock {:name "valid.clock"
+                           :schedule "every.1.seconds"
+                           :url fake/endpoint}]
+
+          (fact "should post url client upon tick"
+
+            (schedule-on valid-clock) => truthy
+            (fake/invoked?) => true))))))
+
