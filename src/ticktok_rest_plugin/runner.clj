@@ -32,6 +32,7 @@
   (fn []
     (println "callback got tick")
     (let [{:keys [status body error]} @(http/post url)]
+      (println "client repond with " status)
       body)))
 
 (defn- build-clock [{:keys [name schedule url]}]
