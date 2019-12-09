@@ -57,4 +57,3 @@
 
             (schedule-on valid-clock) => truthy
             (fake/invoked?) => true))))))
-

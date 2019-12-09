@@ -23,7 +23,9 @@
    (try-run ticktok-config ck))
   ([config ck]
    (try 
-     (tk/ticktok :schedule config ck)    
+     (println "going to run clock " ck)
+     (tk/ticktok :schedule config ck)
+     (println "yesssss")
      ck
      (catch Exception e
        (exception-handler e ck)))))

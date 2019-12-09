@@ -27,11 +27,10 @@
     clock))
 
 (defn clocks-handler [req]
-  (let [clock-req (dom/parse-clock req)
-        clock (clock-from clock-req)]
+  (let [clock-req (dom/parse-clock (:body req))]
     (if (some? clock-req)      
       (do
-        (runner/run clock)
+        (runner/run clock-req)
         (response clock-req))
       (response 400 {:error "Failed to parse clock"
                      :reason (dom/explain req)}))))
@@ -54,5 +53,6 @@
 (defn stop! []
   (when-not (nil? @server)
     (@server :timeout 100)
-    (reset! server nil))
+    (reset! server nil)
+    (runner/close!))
   nil)
