@@ -20,12 +20,13 @@
 
 (defn invoked?  []
   (let [m (<!! (invocations))]
-    (close! ch)
     (some? m)))
 
 (defn fake-handler [req]
   (println "fake client invoked!")
-  (swap! state update :invocations put! "invoked")
+  (swap! state update :invocations #(do
+                                      (put! % "tick")
+                                      %))
   {:status 200})
 
 (defn stop! []

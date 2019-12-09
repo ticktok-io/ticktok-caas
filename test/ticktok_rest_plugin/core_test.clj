@@ -29,8 +29,7 @@
   (fake/start!))
 
 (defn stop-client []
-  (fake/stop!)
-  (runner/close!))
+  (fake/stop!))
 
 (facts "about subscribing clock"
 
