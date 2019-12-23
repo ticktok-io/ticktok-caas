@@ -1,0 +1,1 @@
+web: java $JVM_OPTS -cp target/ticktok-rest-plugin-standalone.jar clojure.main -m ticktok-rest-plugin.core
