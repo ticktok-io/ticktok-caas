@@ -25,9 +25,9 @@ jobs: # basic units of work in a run
       - image: circleci/clojure:lein-2.8.1 # ...with this image as the primary container; this is where all `steps` will run
     steps:
       - checkout
-      - run
-        name: uberjar
-        command: lein uberjar
+      - run:
+          name: uberjar
+          command: lein uberjar
       - run:
           name: Deploy to Heroku
           command: HEROKU_API_KEY="${TICKTOK_REST_PLUGIN_HEROKU_API_KEY}" lein heroku deploy
