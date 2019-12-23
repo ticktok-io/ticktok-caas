@@ -14,5 +14,10 @@
   :profiles {:uberjar {:aot :all}
              :dev {:dependencies [[midje "1.9.9"]
                                   [org.clojure/core.async "0.6.532"]]
-                   :plugins [[lein-midje "3.2.1"]]}}
-  :main ^:skip-aot ticktok-rest-plugin.core)
+                   :plugins [[lein-midje "3.2.1"]
+                             [lein-heroku "0.5.3"]]}}
+  :uberjar-name "ticktok-rest-plugin-standalone.jar"
+  :heroku {:app-name  "ticktok-http-plugin-dev"
+           :jdk-version "1.8"}
+  :main ticktok-rest-plugin.core
+  :aot [ticktok-rest-plugin.core])
