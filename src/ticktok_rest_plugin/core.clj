@@ -56,3 +56,7 @@
     (reset! server nil)
     (runner/close!))
   nil)
+
+(defn -main [& [port]]
+  (let [port (Integer. (or port (env :port) default-port))]
+    (start! port)))
