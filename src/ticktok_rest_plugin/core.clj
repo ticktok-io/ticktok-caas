@@ -1,4 +1,5 @@
 (ns ticktok-rest-plugin.core
+  (:gen-class)
   (:require
    [compojure.core :refer :all]
    [compojure.handler :as handler]
@@ -9,7 +10,7 @@
    [ticktok-rest-plugin.runner :as runner]
    [ticktok-rest-plugin.domain :as dom]))
 
-(def default-port 8080)
+(def default-port 8082)
 
 (defonce server (atom nil))
 
