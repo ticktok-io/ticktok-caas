@@ -7,7 +7,7 @@
             [clojure.string :as string]
             [ticktok-rest-plugin.fake-client :as fake]))
 
-(def port 8081)
+(def port 8080)
 
 (def host (str "http://localhost:" port))
 

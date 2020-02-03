@@ -17,7 +17,6 @@
                    :plugins [[lein-midje "3.2.1"]
                              [lein-heroku "0.5.3"]]}}
   :uberjar-name "ticktok-rest-plugin-standalone.jar"
-  :heroku {:app-name  "ticktok-http-plugin-dev"
+  :heroku {:app-name  "ticktok-rest-plugin"
            :jdk-version "1.8"}
-  :main ticktok-rest-plugin.core
-  :aot [ticktok-rest-plugin.core])
+  :main ^:skip-aot ticktok-rest-plugin.core)

@@ -1,4 +1,5 @@
 (ns ticktok-rest-plugin.core
+  (:gen-class)
   (:require
    [compojure.core :refer :all]
    [compojure.handler :as handler]
@@ -9,7 +10,7 @@
    [ticktok-rest-plugin.runner :as runner]
    [ticktok-rest-plugin.domain :as dom]))
 
-(def default-port 8081)
+(def default-port 8082)
 
 (defonce server (atom nil))
 
@@ -19,12 +20,6 @@
   ([status body]
    {:status status
     :body (json/write-str body)}))
-
-(defn- clock-from [clock-req]
-  (let [cb #(println "some callback")
-        clock (select-keys clock-req [:name :schedule])
-        clock (merge clock {:callback cb})]
-    clock))
 
 (defn clocks-handler [req]
   (let [clock-req (dom/parse-clock (:body req))]
@@ -48,7 +43,8 @@
   ([]
    (start! default-port))
   ([port]
-   (reset! server (http/run-server #'app {:port port}))))
+   (reset! server (http/run-server #'app {:port port}))
+   (println "Server started at" port)))
 
 (defn stop! []
   (when-not (nil? @server)
@@ -56,3 +52,7 @@
     (reset! server nil)
     (runner/close!))
   nil)
+
+(defn -main [& [port]]
+  (let [port (Integer. (or port default-port))]
+    (start! port)))
