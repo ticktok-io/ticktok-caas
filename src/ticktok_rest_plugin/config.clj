@@ -1,11 +1,8 @@
 (ns ticktok-rest-plugin.config
   (:require [aero.core :as aero]))
 
-(defn config
-  ([]
-   (config :dev))
-  ([profile]
-   (aero/read-config "config.edn" {:profile profile})))
+(defn config []
+  (aero/read-config "config.edn"))
 
 (defn ticktok-host [config]
   (get-in config [:ticktok :host]))

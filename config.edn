@@ -1,5 +1,3 @@
 {:ticktok
- {:host #profile {:dev "http://localhost:9643"
-                  :prod "ticktok-host"}
-  :token #profile {:dev "ticktok-zY3wpR"
-                  :prod "ticktok-token"}}}
+ {:host  #or [#env TICKTOK_HOST "http://localhost:9643"]
+  :token #or [#env TICKTOK_TOKEN "ticktok-zY3wpR"]}}

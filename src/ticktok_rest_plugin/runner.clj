@@ -3,7 +3,7 @@
             [ticktok-rest-plugin.config :as config]
             [org.httpkit.client :as http]))
 
-(def config (config/config :dev))
+(def config (config/config))
 
 (def ticktok-config {:host (config/ticktok-host config)
                      :token (config/ticktok-token config)})
@@ -36,13 +36,11 @@
       (println "client repond with " status)
       body)))
 
-(defn- build-clock [{:keys [name schedule url]}]
+(defn- with-callback [{:keys [name schedule url]}]
   (let [ck {:name name
             :schedule schedule
             :callback (callback-for url)}]
     ck))
 
 (defn run [clock]
-  (->> clock
-       build-clock
-       try-run))
+  (try-run (with-callback clock)))
