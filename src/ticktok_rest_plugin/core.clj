@@ -1,5 +1,4 @@
 (ns ticktok-rest-plugin.core
-  (:gen-class)
   (:require
    [compojure.core :refer :all]
    [compojure.handler :as handler]
