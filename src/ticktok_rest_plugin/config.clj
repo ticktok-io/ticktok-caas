@@ -2,7 +2,7 @@
   (:require [aero.core :as aero]))
 
 (defn config []
-  (aero/read-config "config.edn"))
+  (aero/read-config (clojure.java.io/resource "config.edn")))
 
 (defn ticktok-host [config]
   (get-in config [:ticktok :host]))
