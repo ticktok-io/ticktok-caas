@@ -4,7 +4,7 @@ jobs:
     working_directory: ~/temp
     docker:
       - image: circleci/clojure:lein-2.8.1
-      - image: ticktok/ticktok:0.2.6
+      - image: ticktok/ticktok:0.2.7
     environment:
       LEIN_ROOT: nbd
       JVM_OPTS: -Xmx3200m 
