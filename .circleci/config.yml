@@ -26,8 +26,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: uberjar
-          command: lein uberjar
+          name: ring uberjar
+          command: lein ring uberjar
       - run:
           name: Deploy to Heroku
           command: HEROKU_API_KEY="${TICKTOK_REST_PLUGIN_HEROKU_API_KEY}" lein heroku deploy

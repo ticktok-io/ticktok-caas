@@ -5,13 +5,8 @@
    [compojure.route :refer :all]
    [ring.middleware.json :as middleware]
    [clojure.data.json :as json]
-   [org.httpkit.server :as http]
    [ticktok-rest-plugin.runner :as runner]
    [ticktok-rest-plugin.domain :as dom]))
-
-(def default-port 8082)
-
-(defonce server (atom nil))
 
 (defn response 
   ([body]
@@ -36,22 +31,3 @@
 (def app
   (-> (handler/site api-routes)
       (middleware/wrap-json-body {:keywords? true})))
-
-
-(defn start!
-  ([]
-   (start! default-port))
-  ([port]
-   (reset! server (http/run-server #'app {:port port}))
-   (println "Server started at" port)))
-
-(defn stop! []
-  (when-not (nil? @server)
-    (@server :timeout 100)
-    (reset! server nil)
-    (runner/close!))
-  nil)
-
-(defn -main [& [port]]
-  (let [port (Integer. (or port default-port))]
-    (start! port)))
