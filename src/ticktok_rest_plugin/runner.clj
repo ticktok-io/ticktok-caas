@@ -1,7 +1,7 @@
 (ns ticktok-rest-plugin.runner
   (:require [ticktok.core :as tk]
             [ticktok-rest-plugin.config :as config]
-            [org.httpkit.client :as http]))
+            [clj-http.client :as client]))
 
 (def config (config/config))
 
@@ -32,7 +32,7 @@
 (defn- callback-for [url]
   (fn []
     (println "callback got tick")
-    (let [{:keys [status body error]} @(http/post url)]
+    (let [{:keys [status body error]} (client/post url)]
       (println "client repond with " status)
       body)))
 
