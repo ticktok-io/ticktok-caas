@@ -1,1 +1,1 @@
-web: lein ring server-headless
+web: java -jar target/ticktok-rest-plugin-standalone.jar 

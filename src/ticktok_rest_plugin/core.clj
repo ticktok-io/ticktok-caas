@@ -31,5 +31,3 @@
 (def app
   (-> (handler/site api-routes)
       (middleware/wrap-json-body {:keywords? true})))
-
-(println "Server started")
