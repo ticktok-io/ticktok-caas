@@ -13,12 +13,13 @@
                  [aero "1.1.3"]]
   :profiles {:dev {:dependencies [[midje "1.9.9"]
                                   [ring/ring-mock "0.3.2"]
-                                  [org.clojure/core.async "0.6.532"]]
+                                  [org.clojure/core.async "0.6.532"]
+                                  [ring/ring-servlet "1.2.0-RC1"]]
                    :plugins [[lein-midje "3.2.1"]
                              [lein-heroku "0.5.3"]]
                    :resource-paths ["src/resources"]}}
   :plugins [[lein-ring "0.12.5"]]
-  :min-lein-version "2.8.1"
+  :min-lein-version "2.0.0"
   :ring {:handler ticktok-rest-plugin.core/app
          :port 8082}
   :uberjar-name "ticktok-rest-plugin-standalone.jar"
