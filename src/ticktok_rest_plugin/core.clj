@@ -32,4 +32,4 @@
   (-> (handler/site api-routes)
       (middleware/wrap-json-body {:keywords? true})))
 
-(println "Server started at port " (Integer/parseInt (System/getenv "PORT")})
+(println "Server started at port " (Integer/parseInt (System/getenv "PORT")))
