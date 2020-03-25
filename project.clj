@@ -12,10 +12,14 @@
                  [ticktok "1.0.9"]
                  [aero "1.1.3"]]
   :profiles {:dev {:dependencies [[midje "1.9.9"]
+                                  [ring/ring-mock "0.3.2"]
                                   [org.clojure/core.async "0.6.532"]]
                    :plugins [[lein-midje "3.2.1"]
                              [lein-heroku "0.5.3"]]
                    :resource-paths ["src/resources"]}}
+  :plugins [[lein-ring "0.12.5"]]
+  :ring {:handler ticktok-rest-plugin.core/app
+         :port 8082}
   :uberjar-name "ticktok-rest-plugin-standalone.jar"
   :heroku {:app-name  "ticktok-rest-plugin"
            :jdk-version "1.8"})
