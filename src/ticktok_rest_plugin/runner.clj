@@ -33,7 +33,7 @@
   (fn []
     (println "callback got tick")
     (let [{:keys [status body error]} (client/post url)]
-      (println "client repond with " status)
+      (println "client respond with " status)
       body)))
 
 (defn- with-callback [{:keys [name schedule url]}]
