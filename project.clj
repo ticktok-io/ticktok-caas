@@ -20,8 +20,7 @@
                    :resource-paths ["src/resources"]}}
   :plugins [[lein-ring "0.12.5"]]
   :min-lein-version "2.0.0"
-  :ring {:handler ticktok-rest-plugin.core/app
-         :port ~(Integer/parseInt (System/getenv "PORT"))}
+  :ring {:handler ticktok-rest-plugin.core/app}
   :uberjar-name "ticktok-rest-plugin-standalone.jar"
   :heroku {:app-name  "ticktok-rest-plugin"
            :jdk-version "1.8"})
