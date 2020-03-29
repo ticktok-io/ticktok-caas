@@ -27,6 +27,7 @@
      (tk/ticktok :schedule config ck)
      ck
      (catch Exception e
+       (println "failed to run clock " e)
        (exception-handler e ck)))))
 
 (defn- callback-for [url]
