@@ -14,7 +14,8 @@
   :profiles {:dev {:dependencies [[midje "1.9.9"]
                                   [ring/ring-mock "0.3.2"]
                                   [org.clojure/core.async "0.6.532"]
-                                  [ring/ring-servlet "1.2.0-RC1"]]
+                                  [ring/ring-servlet "1.2.0-RC1"]
+                                  [http-kit "2.3.0"]]
                    :plugins [[lein-midje "3.2.1"]
                              [lein-heroku "0.5.3"]]
                    :resource-paths ["src/resources"]}}
