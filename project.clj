@@ -9,7 +9,7 @@
                  [ring "1.7.1"]
                  [ring/ring-json "0.4.0"]
                  [org.clojure/data.json "0.2.6"]
-                 [ticktok "1.0.9"]
+                 [ticktok "1.0.10"]
                  [aero "1.1.3"]]
   :profiles {:dev {:dependencies [[midje "1.9.9"]
                                   [ring/ring-mock "0.3.2"]
